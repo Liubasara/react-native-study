@@ -2,26 +2,26 @@ import React, { Component } from 'react'
 import { View, Text, Button, Image } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 
-class HomeScreen extends Component {
+class ScreenHome2 extends Component {
   constructor (props) {
     super(props)
     this.navigation = props.navigation
   }
-  render() {
+  render () {
     return (
       <View>
-        <Text style={{ fontSize: 36 }}>Hello, Navigation!</Text>
+        <Text style={{ fontSize: 36 }}>ScreenHome2</Text>
         <Button
-        title="goTab2"
-        onPress={() => {this.navigation.navigate("Tab2")}}></Button>
+        title="goTab1"
+        onPress={() => {this.navigation.navigate("Tab1")}}></Button>
       </View>
     )
   }
 }
 
-const HomeScreenStackNavigator = createStackNavigator({ HomeScreen }, {
+const HomeScreenStackNavigator2 = createStackNavigator({ ScreenHome2 }, {
   navigationOptions: {
-    tabBarLabel: 'Home',
+    tabBarLabel: 'Me',
     tabBarIcon: ({ focused }) => {
       const icon = focused
         ? require('../../assets/images/tab_home_active.png')
@@ -30,8 +30,8 @@ const HomeScreenStackNavigator = createStackNavigator({ HomeScreen }, {
     }
   },
   defaultNavigationOptions: {
-    title: '首页'
+    title: '我的页面'
   }
 })
 
-export default HomeScreenStackNavigator
+export default HomeScreenStackNavigator2

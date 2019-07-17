@@ -1,8 +1,23 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 import HomeScreen from '../screens/HomeScreen'
+import HomeScreen2 from '../screens/HomeScreen2'
 
-const SimpleApp = createStackNavigator({
-  Home: { screen: HomeScreen }
-})
+const TabNavigator = createBottomTabNavigator(
+  {
+    Tab1: HomeScreen,
+    Tab2: HomeScreen2,
+  },
+  {
+    tabBarPosition: 'bottom'
+  }
+)
 
-export default (AppNavigator = createAppContainer(SimpleApp))
+// const SimpleApp = createStackNavigator({
+//   Home: { screen: TabNavigator },
+// }, {
+//   defaultNavigationOptions: {
+//     title: 'Hello !'
+//   }
+// })
+
+export default (AppNavigator = createAppContainer(TabNavigator))
