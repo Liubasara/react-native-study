@@ -8,6 +8,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@babel/plugin-transform-flow-strip-types": "^7.2.0",
+    "@ant-design/react-native": "^3.1.10",
     "mobx": "^5.13.0",
     "mobx-react": "^6.1.1",
     "react": "16.8.6",
@@ -19,6 +21,8 @@
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/runtime": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-proposal-decorators": "^7.2.0",
     "@react-native-community/eslint-config": "^0.0.5",
     "babel-jest": "^24.8.0",
     "eslint": "^6.0.1",
