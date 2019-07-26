@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Dimensions, TouchableOpacity, View, Text, Image } from 'react-native'
+import { inject, observer } from 'mobx-react/native'
 import Constant from '../../utils/Constant'
 
 import ICON_UN_0 from '../../assets/images/tab_home.png'
@@ -22,6 +23,10 @@ const TAB_ICON_LIST = [
 const { width, height } = Dimensions.get("window")
 const TAB_TYPE_SELLER = ["首页", "我的"]
 
+@inject(stores => ({
+  system: stores.system
+}))
+@observer
 export default class HomeTabs extends Component {
   constructor (props) {
     super(props)
@@ -36,7 +41,7 @@ export default class HomeTabs extends Component {
   componentWillUnmount() {}
 
   renderFoot () {
-    const { tabState } = this.state
+    const { tabState } = this.props.system
     return (
       <View style={styles.footContainer}>
         {
@@ -46,7 +51,7 @@ export default class HomeTabs extends Component {
             return (
               <TouchableOpacity
                 key={index}
-                onPress={() => this.setState({ tabState: index })}
+                onPress={() => this.props.system.switchTab(index)}
                 disabled={isSelect}
                 style={styles.tabTouch}
               >
@@ -68,7 +73,7 @@ export default class HomeTabs extends Component {
   }
 
   renderTab () {
-    const { tabState } = this.state
+    const { tabState } = this.props.system
     switch (tabState) {
       case 0:
         return <View><Text>首页</Text></View>
