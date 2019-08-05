@@ -2,26 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Dimensions, TouchableOpacity, View, Text, Image } from 'react-native'
 import { inject, observer } from 'mobx-react/native'
 import Constant from '../../utils/Constant'
-
-import ICON_UN_0 from '../../assets/images/tab_home.png'
-import ICON_UN_1 from '../../assets/images/tab_home.png'
-
-import ICON_SEL_0 from '../../assets/images/tab_home_active.png'
-import ICON_SEL_1 from '../../assets/images/tab_home_active.png'
-
-const TAB_ICON_LIST = [
-  {
-    unSelect: ICON_UN_0,
-    isSelect: ICON_SEL_0
-  },
-  {
-    unSelect: ICON_UN_1,
-    isSelect: ICON_SEL_1
-  }
-]
-
 const { width, height } = Dimensions.get("window")
-const TAB_TYPE_SELLER = ["首页", "我的"]
 
 @inject(stores => ({
   system: stores.system
@@ -30,10 +11,8 @@ const TAB_TYPE_SELLER = ["首页", "我的"]
 export default class HomeTabs extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      tabState: 0
-    }
   }
+  
   componentWillMount() {}
 
   componentDidMount() {}
@@ -45,9 +24,9 @@ export default class HomeTabs extends Component {
     return (
       <View style={styles.footContainer}>
         {
-          TAB_TYPE_SELLER.map((obj, index) => {
+          this.props.tabViews.map(({title, tabIcon}, index) => {
             const isSelect = index + '' === '' + tabState
-            const image = isSelect ? TAB_ICON_LIST[index].isSelect : TAB_ICON_LIST[index].unSelect
+            const image = isSelect ? tabIcon.isSelect : tabIcon.unSelect
             return (
               <TouchableOpacity
                 key={index}
@@ -62,7 +41,7 @@ export default class HomeTabs extends Component {
                 <Text
                   style={isSelect ? styles.tabTextSel : styles.tabText}
                 >
-                  {obj}
+                  {title}
                 </Text>
               </TouchableOpacity>
             )
@@ -74,12 +53,10 @@ export default class HomeTabs extends Component {
 
   renderTab () {
     const { tabState } = this.props.system
-    switch (tabState) {
-      case 0:
-        return <View><Text>首页</Text></View>
-      case 1:
-        return <View><Text>我的</Text></View>
-    }
+    const TabComponent = this.props.tabViews[tabState]['component']
+    return (
+      <TabComponent></TabComponent>
+    )
   }
 
   render () {
