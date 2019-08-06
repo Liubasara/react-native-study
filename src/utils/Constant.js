@@ -31,10 +31,11 @@ export default class {
     }
 
     /****************字体颜色************/
+    static blodText = '#221815';
     static blackText = "#595757";
     static grayText = "#666464";
     static lightText = "#898989";
-    static themeText = "#0096eb";
+    static themeText = "#0096EB";
 
     /****************字体大小************/
     static miniSize = this.scaleFontSizeFunc(10);
@@ -44,12 +45,15 @@ export default class {
     static avatarSize = this.scaleFontSizeFunc(36);
     static maxSize = this.scaleFontSizeFunc(38);
 
+    static borderColor = '#C9CACA';
+    static backgroundColor = "#282B3B"
+
     static normalMargin = this.scale(15);
 
     static lineWidth = StyleSheet.hairlineWidth;
     static lineColor = "#cccccc";
 
-    static itemHeight = this.scale(40);
+    static itemHeight = this.scale(38);
 
     static paddingIPXBottom = isIphoneX ? 17 : 0;
     static sizeHeaderMarginTop = Platform.OS === "ios" && isIphoneX ? 35 : Platform.OS === "ios" ? 20 : 0;

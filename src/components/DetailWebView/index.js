@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import { WebView } from 'react-native-webview'
 
+import CommonHeader from '../CommonHeader'
+
 export default class DetailWebView extends Component {
   constructor(props) {
     super(props)
@@ -15,9 +17,11 @@ export default class DetailWebView extends Component {
   render () {
     const { content } = this.props
     return (
-      <WebView 
-        source={{ html: content }}
-      />
+      <CommonHeader title="文章详情">
+        <WebView 
+          source={{ html: content }}
+        />
+      </CommonHeader>
     )
   }
 }
