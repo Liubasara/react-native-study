@@ -41,7 +41,7 @@ export default class CommonHeader extends Component {
               width: this.props.backIconSrc ? Constant.scale(16) : Constant.scale(9),
               height: this.props.backIconSrc ? Constant.scale(16) : Constant.scale(15)
             }}
-            source={this.props.backIconSrc ? this.props.backIconSrc : BackIcon}/>
+            source={this.props.backIconSrc || BackIcon}/>
 
       </TouchableOpacity>
     )
