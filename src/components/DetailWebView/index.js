@@ -20,7 +20,7 @@ export default class DetailWebView extends Component {
     noTemplate: false
   }
 
-  componentWillMount () {}
+  UNSAFE_UNSAFE_componentWillMount () {}
 
   componentDidMount () {}
 
@@ -30,8 +30,18 @@ export default class DetailWebView extends Component {
     const { content, noTemplate } = this.props
     return (
       <CommonHeader title="文章详情">
-        <WebView 
+        <WebView
+          originWhitelist={['*']}
           source={{ html: noTemplate ? content : htmlTemplate(content) }}
+          ref={'webview'}
+          scalesPageToFit
+          javaScriptEnabled
+          domStorageEnabled
+          startInLoadingState
+          mixedContentMode="always"
+          onLoad={() => {
+            this.refs.webview.postMessage('postTest')
+          }}
         />
       </CommonHeader>
     )

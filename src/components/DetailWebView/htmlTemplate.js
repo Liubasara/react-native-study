@@ -9,6 +9,11 @@ export default function htmlTemplate (detailHtml) {
     <body>
       ${detailHtml}
     </body>
+    <script>
+      document.addEventListener('message', function (e) {
+        window.alert(e.data)
+      })
+    </script>
   </html>
   `
 }

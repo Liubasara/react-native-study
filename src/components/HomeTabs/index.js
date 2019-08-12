@@ -13,7 +13,7 @@ export default class HomeTabs extends Component {
     super(props)
   }
   
-  componentWillMount() {}
+  UNSAFE_componentWillMount() {}
 
   componentDidMount() {}
 
