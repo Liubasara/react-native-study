@@ -1,8 +1,8 @@
 import { Platform, DeviceEventEmitter } from "react-native";
 import { Actions } from "react-native-router-flux";
+import config from '../config'
 
-//const BaseUrl = 'https://wechat.sandbox2.oa.isuwang.com/api/'
-const BaseUrl = 'http://192.168.3.248:9094/app/'
+const { BaseUrl } = config
 
 /**
  * 网络请求的工具类
@@ -33,32 +33,7 @@ export default class NetUtils {
                 return response.json();
             }).then(json => {
                 __DEV__ && console.log("===getResponse===", newUrl, json);
-                if (json.code + '' === '0') {
-                    resolve(json);
-                } else if (json.code === 404 || json.code === "404") {
-                    reject({
-                        code: json.code,
-                        msg: json.msg,
-                        data: json.data
-                    });
-                } else if (
-                    json.code + "" === "1023" ||
-                    json.code + "" === "1022"
-                ) {
-                    // 登录失效
-                    DeviceEventEmitter.emit(Constant.LOGIN_FAIL);
-                    reject({
-                        code: json.code,
-                        msg: json.msg,
-                        data: json.data
-                    });
-                } else {
-                    reject({
-                        code: json.code,
-                        msg: json.msg,
-                        data: json.data
-                    });
-                }
+                resolve(json);
             }).catch(error => {
                 __DEV__ && console.log("get======error", newUrl, error.toString());
                 reject({ code: -11, msg: error.toString() });
